@@ -34,6 +34,7 @@ addBookToLibrary('Java All-in-One For Dummies', 'Doug Lowe ', 912, false);
 function displayBooks(){
 
     const library = document.querySelector('.library');
+    library.textContent = '';
     for(let item of myLibrary){
         const book = document.createElement('div');
         book.classList.add('book');
@@ -51,7 +52,7 @@ function displayBooks(){
                 span.textContent = prop + ': '
                 li.appendChild(span);
                 if(prop === 'read'){   
-                    let text = document.createTextNode((item.status?'read':'not read yet'));
+                    let text = document.createTextNode((item.read?'read':'not read yet'));
                     li.appendChild(text); 
                 }else{
                     let text = document.createTextNode(item[prop]);
@@ -66,4 +67,32 @@ function displayBooks(){
     }
 }
 
-displayBooks()
+displayBooks();
+
+// dialog logic
+const dialog = document.querySelector('dialog');
+//show dialog btn
+const showBtn = document.querySelector('.show-btn');
+showBtn.addEventListener('click', (e)=>{
+    dialog.showModal()
+});
+
+//close dialog btn
+const closeBtn = document.querySelector('.close-btn');
+closeBtn.addEventListener('click', (e)=>{
+    dialog.close();
+});
+
+// add book btn
+const titleInput = document.querySelector("input[name='title']");
+const authorInput = document.querySelector("input[name='author']");
+const pagesInput = document.querySelector("input[name='pages']");
+
+const addBtn = document.querySelector('.submit-btn');
+addBtn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const statusInput = document.querySelector("input[name='status']:checked"); 
+    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, (statusInput.value === 'true'));
+    dialog.close();
+    displayBooks();
+})

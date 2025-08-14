@@ -7,7 +7,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 500px;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: max-content 50px min-content;
     justify-content: center;
 }
 
@@ -30,6 +30,7 @@ h1 {
     display: grid;
     grid-template-rows: 2fr 1fr;
     padding: 10px;
+    height: 200px;
 }
 
 .book h2 {
@@ -48,4 +49,66 @@ h1 {
 
 .book-info span {
     font-weight: bold;
+}
+
+/* Dialog layout */
+dialog {
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+}
+
+form {
+    display: grid;
+    gap: 5px;
+}
+
+.form-control {
+    display: grid;
+    gap: 5px;
+}
+
+input[type='text'],
+input[type='number'] {
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #dadada;
+}
+
+dialog h2 {
+    justify-self: center;
+}
+
+dialog::backdrop {
+    background-color: #3a3a3a;
+    opacity: 0.5;
+}
+
+button {
+    border: none;
+    background-color: rgb(3, 214, 214);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.submit-btn {
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.show-btn {
+    width: max-content;
+    padding: 10px 20px;
+    justify-self: end;
+    align-self: center;
+    border-radius: 10px;
+}
+
+.close-btn {
+    background-color: transparent;
+    color: rgb(3, 214, 214);
+    font-size: 20px;
+    justify-self: start;
 }

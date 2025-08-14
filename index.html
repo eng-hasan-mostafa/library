@@ -10,7 +10,36 @@
 <body>
     <div class="container">
         <h1>Simple library</h1>
+        <button class="show-btn">Add new book</button>
         <div class="library"></div>
     </div>
+    <dialog>
+            <button class="close-btn">X</button>
+            <h2>Add new book</h2>
+            <form>
+                <div class="form-control">
+                    <label for="title">Title </label>
+                    <input type="text" name="title" id="title">
+                </div>
+                <div class="form-control">
+                    <label for="author">Author </label>
+                    <input type="text" name="author" id="author">
+                </div>
+                <div class="form-control">
+                    <label for="pages">Pages </label>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <fieldset>
+                    <legend>Status </legend>
+                    <label for="read">Read</label>
+                    <input type="radio" name="status" id="read" value="true">
+                    <label for="not_read">Not read yet</label>
+                    <input type="radio" name="status" id="not_read" value="false">
+                </fieldset>
+                <div class="form-control">
+                    <button class="submit-btn">Add</button>
+                </div>
+            </form>
+    </dialog>
 </body>
 </html>
