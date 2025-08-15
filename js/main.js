@@ -63,6 +63,15 @@ function displayBooks(){
         }   
 
         book.appendChild(bookInfo);
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'remove';
+        removeBtn.classList.add('remove-btn');
+        removeBtn.dataset.id = item.id;
+        removeBtn.addEventListener('click',(e)=> {
+            myLibrary.splice(myLibrary.indexOf(item), 1);
+            displayBooks();
+        }); 
+        book.appendChild(removeBtn);
         library.appendChild(book);
     }
 }
@@ -95,4 +104,4 @@ addBtn.addEventListener('click', (e)=>{
     addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, (statusInput.value === 'true'));
     dialog.close();
     displayBooks();
-})
+});

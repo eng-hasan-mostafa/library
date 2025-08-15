@@ -20,7 +20,7 @@ h1 {
     border: 5px solid green;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-template-rows: repeat(auto-fit, min(200px));
+    grid-template-rows: repeat(auto-fit, min(300px));
     gap: 10px;
     padding: 10px;
 }
@@ -28,9 +28,9 @@ h1 {
 .book {
     border: 5px solid cyan;
     display: grid;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
     padding: 10px;
-    height: 200px;
+    height: 300px;
 }
 
 .book h2 {
@@ -111,4 +111,14 @@ button {
     color: rgb(3, 214, 214);
     font-size: 20px;
     justify-self: start;
+}
+
+.remove-btn {
+    width: max-content;
+    padding: 10px;
+    justify-self: end;
+    align-self: center;
+    border-radius: 10px;
+    background-color: rgb(245, 40, 3);
+
 }
