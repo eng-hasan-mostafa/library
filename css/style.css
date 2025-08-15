@@ -113,7 +113,8 @@ button {
     justify-self: start;
 }
 
-.remove-btn {
+.remove-btn,
+.change-status-btn  {
     width: max-content;
     padding: 10px;
     justify-self: end;
@@ -121,4 +122,13 @@ button {
     border-radius: 10px;
     background-color: rgb(245, 40, 3);
 
+}
+
+.change-status-btn {
+    background-color: rgb(3, 245, 225);
+}
+
+.buttons {
+    display: grid;
+    grid-auto-flow: column;
 }

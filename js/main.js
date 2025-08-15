@@ -21,6 +21,10 @@ Book.prototype.info = function(){
            ${(this.read ? 'read' : 'not read yet')}`;
 }
 
+Book.prototype.changeStatus = function(){
+    this.read = !this.read;
+}
+
 function addBookToLibrary(title, author, pages, read) {
     let book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -51,7 +55,8 @@ function displayBooks(){
                 let span = document.createElement('span');
                 span.textContent = prop + ': '
                 li.appendChild(span);
-                if(prop === 'read'){   
+                if(prop === 'read'){  
+                    span.textContent = 'status: ' 
                     let text = document.createTextNode((item.read?'read':'not read yet'));
                     li.appendChild(text); 
                 }else{
@@ -63,6 +68,8 @@ function displayBooks(){
         }   
 
         book.appendChild(bookInfo);
+        const div = document.createElement('div');
+        div.classList.add('buttons');
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'remove';
         removeBtn.classList.add('remove-btn');
@@ -71,7 +78,19 @@ function displayBooks(){
             myLibrary.splice(myLibrary.indexOf(item), 1);
             displayBooks();
         }); 
-        book.appendChild(removeBtn);
+        div.appendChild(removeBtn);
+
+        const changeStatusBtn = document.createElement('button');
+        changeStatusBtn.textContent = 'change status';
+        changeStatusBtn.classList.add('change-status-btn');
+        changeStatusBtn.dataset.id = item.id;
+        changeStatusBtn.addEventListener('click',(e)=> {
+            item.changeStatus();
+            displayBooks();
+        }); 
+        div.appendChild(changeStatusBtn);
+
+        book.appendChild(div);
         library.appendChild(book);
     }
 }
