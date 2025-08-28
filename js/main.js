@@ -19,21 +19,30 @@ class Book{
     }
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    let book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-}
+const library = (function(){
+    const libraryContent = [];
 
-addBookToLibrary('Head First Java', 'Kathy Sierra  &  Bert Bates', 688, true);
-addBookToLibrary('Clean Code', 'Robert Martin', 464, false);
-addBookToLibrary('Java All-in-One For Dummies', 'Doug Lowe ', 912, false);
+    const addBookToLibrary = (title, author, pages, read) =>{
+        let book = new Book(title, author, pages, read);
+        libraryContent.push(book);
+    }
+
+    const getLibraryContent = () => libraryContent;
+    
+    return {addBookToLibrary, getLibraryContent};
+})();
+
+library.addBookToLibrary('Head First Java', 'Kathy Sierra  &  Bert Bates', 688, true);
+library.addBookToLibrary('Clean Code', 'Robert Martin', 464, false);
+library.addBookToLibrary('Java All-in-One For Dummies', 'Doug Lowe ', 912, false);
 
 
 function displayBooks(){
 
-    const library = document.querySelector('.library');
-    library.textContent = '';
-    for(let item of myLibrary){
+    const libraryContainer = document.querySelector('.library');
+    libraryContainer.textContent = '';
+    const libraryContent = library.getLibraryContent();
+    for(let item of libraryContent){
         const book = document.createElement('div');
         book.classList.add('book');
         
@@ -69,7 +78,7 @@ function displayBooks(){
         removeBtn.classList.add('remove-btn');
         removeBtn.dataset.id = item.id;
         removeBtn.addEventListener('click',(e)=> {
-            myLibrary.splice(myLibrary.indexOf(item), 1);
+            libraryContent.splice(libraryContent.indexOf(item), 1);
             displayBooks();
         }); 
         div.appendChild(removeBtn);
@@ -85,7 +94,7 @@ function displayBooks(){
         div.appendChild(changeStatusBtn);
 
         book.appendChild(div);
-        library.appendChild(book);
+        libraryContainer.appendChild(book);
     }
 }
 
@@ -114,7 +123,7 @@ const addBtn = document.querySelector('.submit-btn');
 addBtn.addEventListener('click', (e)=>{
     e.preventDefault();
     const statusInput = document.querySelector("input[name='status']:checked"); 
-    addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, (statusInput.value === 'true'));
+    library.addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, (statusInput.value === 'true'));
     dialog.close();
     displayBooks();
 });
