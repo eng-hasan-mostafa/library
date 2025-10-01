@@ -132,3 +132,18 @@ button {
     display: grid;
     grid-auto-flow: column;
 }
+
+/* form validation */
+label {
+    display: grid;
+}
+
+.error {
+    background-color: #bb1414bf;
+    color: #ffffff;
+    border-radius: 10px;
+}
+
+.required-asterisk{
+    color: #bb1414;
+}

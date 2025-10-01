@@ -128,10 +128,30 @@ const displayController = (function(){
             const titleInput = document.querySelector("input[name='title']");
             const authorInput = document.querySelector("input[name='author']");
             const pagesInput = document.querySelector("input[name='pages']");
-            const statusInput = document.querySelector("input[name='status']:checked"); 
-            library.addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, (statusInput.value === 'true'));
-            dialog.close();
-            displayBooks();
+            const statusInput = document.querySelector("input[name='status']:checked");
+            
+            if (titleInput.validity.valueMissing) {
+              const titleError = document.querySelector("#title + span.error");
+              titleError.textContent = "The title must be filled!";
+              titleError.style.padding = "10px";
+            } else if (authorInput.validity.valueMissing) {
+              const authorError = document.querySelector("#author + span.error");
+              authorError.style.padding = "10px";
+              authorError.textContent = "The author name must be filled!";
+            } else if (statusInput === null) {
+              const statusError = document.querySelector("fieldset + span.error");
+              statusError.style.padding = "10px";
+              statusError.textContent = "You must choose a status!";
+            } else {
+              library.addBookToLibrary(
+                titleInput.value,
+                authorInput.value,
+                pagesInput.value,
+                statusInput.value === "true"
+              );
+              dialog.close();
+              displayBooks();
+            }
         });
     }
 

@@ -16,26 +16,38 @@
     <dialog>
             <button class="close-btn">X</button>
             <h2>Add new book</h2>
-            <form>
+            <form novalidate>
                 <div class="form-control">
-                    <label for="title">Title </label>
-                    <input type="text" name="title" id="title">
+                    <label for="title">
+                        <span>Title<span class="required-asterisk">*</span></span>
+                        <input type="text" name="title" id="title" required>
+                        <span class="error" aria-live="polite"></span>
+                     </label>
                 </div>
                 <div class="form-control">
-                    <label for="author">Author </label>
-                    <input type="text" name="author" id="author">
+                    <label for="author">
+                        <span>Author<span class="required-asterisk">*</span></span>
+                        <input type="text" name="author" id="author" required>
+                        <span class="error" aria-live="polite"></span>
+                    </label>
                 </div>
                 <div class="form-control">
-                    <label for="pages">Pages </label>
-                    <input type="number" name="pages" id="pages">
+                    <label for="pages">
+                        <span>Pages</span>
+                        <input type="number" name="pages" id="pages">
+                        <span class="error" aria-live="polite"></span>
+                    </label>
                 </div>
-                <fieldset>
-                    <legend>Status </legend>
-                    <label for="read">Read</label>
-                    <input type="radio" name="status" id="read" value="true">
-                    <label for="not_read">Not read yet</label>
-                    <input type="radio" name="status" id="not_read" value="false">
-                </fieldset>
+                <div class="form-control">
+                    <fieldset>
+                        <legend>Status<span class="required-asterisk">*</span></legend>
+                        <label for="read">Read</label>
+                        <input type="radio" name="status" id="read" value="true" required>
+                        <label for="not_read">Not read yet</label>
+                        <input type="radio" name="status" id="not_read" value="false">
+                    </fieldset>
+                    <span class="error" aria-live="polite"></span>
+                </div>
                 <div class="form-control">
                     <button class="submit-btn">Add</button>
                 </div>
